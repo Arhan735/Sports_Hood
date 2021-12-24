@@ -1,0 +1,5 @@
+package net.javaguides.springboot.respository;
+
+public interface AvailableUser {
+
+}

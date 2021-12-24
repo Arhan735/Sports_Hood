@@ -1,0 +1,75 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-image: linear-gradient(90deg, #9cf0f8 0%, #7aacef 100%);
+  /* background: #7aacef; */
+  color: white;
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+}
+
+header,
+form {
+  min-height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.autocomplete-dropdown-container {
+  border-bottom: honeydew;
+  border-left: honeydew;
+  border-right: honeydew;
+  border-top: 1px solid #e6e6e6;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  z-index: 1000;
+  border-radius: 0 0 2px 2px;
+}
+
+.autocomplete-dropdown-container input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: none;
+  background: white;
+  width: 300px;
+}
+
+.css-g287j2-control:focus {
+  outline: none;
+  border-color: yellowgreen;
+}
+
+.css-1inigcg-control {
+  border: none;
+  padding: 7.5px;
+  background: #ffff;
+  border: none;
+  outline: none;
+}
+
+input {
+  width: 300px;
+  padding: 14px;
+  color: #9a9a9a;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  border: #cac6c6 solid 0.5px;
+  border-radius: 4px;
+
+  @media screen and (max-width: 960px) {
+    width: 300px;
+  }
+  @media screen and (max-width: 600px) {
+    width: 100px;
+  }
+}
+
+input:focus {
+  outline: none;
+  border-radius: 4px;
+}

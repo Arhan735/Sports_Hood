@@ -1,0 +1,17 @@
+package net.javaguides.springboot;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+
+import net.javaguides.springboot.controller.AppProperties;
+
+@SpringBootApplication
+@EnableConfigurationProperties(AppProperties.class)
+public class ServerSportsHoodApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(ServerSportsHoodApplication.class, args);
+	}
+
+}

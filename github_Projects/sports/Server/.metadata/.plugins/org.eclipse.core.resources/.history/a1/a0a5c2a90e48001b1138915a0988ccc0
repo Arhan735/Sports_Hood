@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    password: sportshood
+    url: jdbc:mysql://localhost:3306/sportshood?useSSL=false
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 191999611167-ejbdhq9pac2epa792lqik4b29ossq3n5.apps.googleusercontent.com
+            client-secret: J9yeSFjKKDGWZpXVnrcic2Ya

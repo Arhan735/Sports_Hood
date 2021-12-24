@@ -1,0 +1,61 @@
+package net.javaguides.springboot.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import net.javaguides.springboot.model.AvailableUsers;
+import net.javaguides.springboot.model.User;
+import net.javaguides.springboot.respository.UserRepository;
+
+@RestController
+public class LoginController {
+
+	@Autowired
+	private UserRepository userRepository; 
+
+	/**
+	 * Login the user
+	 * save the data in table
+	 * @param principal
+	 * @return
+	 **/
+    @GetMapping("/signIn")
+    public boolean user(@AuthenticationPrincipal OAuth2User principal) {
+    	String userEmail =  principal.getAttribute("email");
+
+    	//create a user object getting information after login
+    	User user= new User();    
+    	user.setName(principal.getAttribute("name"));    
+    	user.setEmail(userEmail);    
+    	user.setImageURL(principal.getAttribute("picture"));   
+    	
+    	//check if the email already exists and save it in the table
+    	boolean exists = userRepository.existsUserByEmail(userEmail);
+    	if(!exists)
+    		userRepository.save(user); 
+    		
+        return true;
+    }
+    
+	//get all users
+	@GetMapping("/users")
+	public List<User> getAllUsers(){
+		return userRepository.findAll(); 
+	}
+	
+	//get all available_users
+//	@GetMapping("/availableUsers")
+//	public List<AvailableUsers> getAllUsers(){
+//		return availableUserRepository.findAll(); 
+//	}
+
+
+}

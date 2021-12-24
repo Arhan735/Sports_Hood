@@ -1,0 +1,50 @@
+package net.javaguides.springboot.controller;
+
+import java.util.Collections;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.json.simple.JSONObject;    
+
+import net.javaguides.springboot.model.User;
+import net.javaguides.springboot.respository.UserRepository;
+
+@RestController
+@RequestMapping("/api/v1/")
+public class LoginController {
+
+//	@GetMapping("/login")
+//	public String restricted() {
+//		return "to see this text you need to be logged in:";
+//	}
+	@Autowired
+	private UserRepository userRepository; 
+
+//	@PostMapping("/createUser")
+//	public User createUser(@RequestBody User user) {
+//		return userRepository.save(user); 
+//	}
+//	
+    @GetMapping("/signIn")
+    public Map<String, Object> user(@AuthenticationPrincipal OAuth2User principal) {
+    	String userName = principal.getAttribute("name");
+    	String userEmail =  principal.getAttribute("email");
+    	String userImageUrl =  principal.getAttribute("picture");
+    	
+    	JSONObject user=new JSONObject();    
+    	  user.put("name",userName);    
+    	  user.put("email", userEmail);    
+    	  user.put("imageurl",userImageUrl);    
+    	  
+    	  userRepository.save(user)
+        return Collections.singletonMap("name", principal.getAttribute("email"));
+    }
+
+}
